@@ -1,7 +1,8 @@
 package com.lucazanrosso.opcuaclient;
 
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
+//import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                 /////////// DISCOVER ENDPOINT ////////
                 // Discover endpoints
-                EndpointDescription[] endpoints = myClient.discoverEndpoints("opc.tcp://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+                EndpointDescription[] endpoints = myClient.discoverEndpoints("opc.tcp://10.135.105.162:53530/OPCUA/SimulationServer");
 
                 // Filter out all but opc.tcp protocol endpoints
                 endpoints = EndpointUtil.selectByProtocol(endpoints, "opc.tcp");
@@ -120,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 SessionChannel mySession = myClient.createSessionChannel(endpoint);
 
                 // Activate the session. Use mySession.activate() if you do not want to use user authentication
-                mySession.activate("xxxxxxxxxx", "xxxxxxxxxx");
+                mySession.activate();
 
                 // Read a variable
                 NodeId nodeId = new NodeId(5, "Counter1");
